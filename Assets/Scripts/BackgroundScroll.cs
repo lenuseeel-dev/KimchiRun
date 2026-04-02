@@ -1,21 +1,17 @@
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class BackgroundScroll : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public float scrollSpeed = 0.5f;
-    public Material mat;
-    void Start()
+    [SerializeField] private float scrollSpeed = 0.5f;
+    private MeshRenderer meshRenderer;
+
+    private void Awake()
     {
-        mat = GetComponent<MeshRenderer>().material;
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        float offset = scrollSpeed * Time.deltaTime;
-        mat.mainTextureOffset += new Vector2(offset, 0);
+        meshRenderer.material.mainTextureOffset += new Vector2(scrollSpeed * Time.deltaTime, 0f);
     }
 }
- 
